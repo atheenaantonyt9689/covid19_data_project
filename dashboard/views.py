@@ -1,4 +1,20 @@
-from django.views.generic import TemplateView
-class HomePageView(TemplateView):
+from .models import CovidCases
+from django.views import View
+from django.shortcuts import render
+class HomePageView(View):
+    model=CovidCases
+    def get(self,request,*args,**kwargs):       
+        context={}        
 
-    template_name = 'core_section/home.html'
+        context["covid_dataset"]=CovidCases.objects.all()
+        
+
+        return render(request,"core_section/home.html",context)
+
+    def post(self,request,*args,**kwargs):
+
+        return render(request,"core_section/home.html",)
+
+
+
+

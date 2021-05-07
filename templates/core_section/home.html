@@ -5,7 +5,27 @@
       
       
       <div class="starter-template">
-        <h1>Bootstrap starter template</h1>
+
+
+        {% for covid_data in covid_dataset %}
+ 
+        <h5>STATE: {{ covid_data.state }}<br/></h5>
+         Dictrict:{{ covid_data.district }}<br/>
+        Active cases:{{ covid_data.active }}<br/>
+        Confirmed Cases:{{covid_data.confirmed }}<br/>
+        Deceased:{{ covid_data.deceased }}<br/>
+        Recovered Cases :{{ covid_data.recovered }}<br/>       
+        
+
+        <hr/>
+     
+        {% endfor %}
+     
+    </div>
+
+        
+        <!--li>{{ covid_data }}</li-->
+        
         <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
       </div>
 {% endblock content %}
