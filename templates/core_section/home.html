@@ -1,32 +1,57 @@
 {% extends 'layouts/base.html' %}
-{% block content %}
-
-      
+{% block content %}      
       
       
       <div class="starter-template">
-
-
-        {% for covid_data in covid_dataset %}
- 
-        <h5>STATE: {{ covid_data.state }}<br/></h5>
-         Dictrict:{{ covid_data.district }}<br/>
-        Active cases:{{ covid_data.active }}<br/>
-        Confirmed Cases:{{covid_data.confirmed }}<br/>
-        Deceased:{{ covid_data.deceased }}<br/>
-        Recovered Cases :{{ covid_data.recovered }}<br/>       
-        
+<div>              
+                 
+                   
+            
+         </div>  
+         <h3> COVID DATA</h3>  
+         <table class="table table-bordered table-success">
+             
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">STATE</th>
+                <th scope="col">ACTIVE</th>
+                <th scope="col">CONFIRMED</th>
+                <th scope="col">DECEASED</th>
+                
+                <th scope="col">RECOVERD</th>
+                
+                
+                
+                
+              </tr>
+            </thead>
+            <tbody>
+                {% for key, value in counts.items %}
+              <tr>
+                <th scope="row">{{key}}</th>
+                <td>{{value.active}}</td>
+                <td>{{value.confirmed}}</td>
+                <td>{{value.deceased}}</td>
+                <td>{{value.recovered}}</td>
+                
+              </tr>
+              
+              
+              {% endfor %}
+            </tbody>
+          </table>
+         
 
         <hr/>
      
-        {% endfor %}
+        
      
-    </div>
+       
+        
 
         
         <!--li>{{ covid_data }}</li-->
         
-        <p class="lead">Use this document as a way to quickly start any new project.<br> All you get is this text and a mostly barebones HTML document.</p>
-      </div>
+        </div>
 {% endblock content %}
 
