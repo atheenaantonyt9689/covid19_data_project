@@ -1,6 +1,51 @@
 {% extends 'layouts/base.html' %}
-{% block content %}      
-      
+{% block content %}     
+<canvas id="myChart" width="400" height="400"></canvas>
+
+<script>
+  var ctx = document.getElementById('myChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+          labels: [{% for key, value in counts.items %}'{{key}}',{% endfor %}],
+          datasets: [ 
+            {
+            label: "active",
+            fillColor: "blue",
+            data: [{% for key, value in counts.items %}'{{value.active}}',{% endfor %}]
+           
+        },
+        {
+            label: "confiremd",
+            fillColor: "red",
+            data: [{% for key,value in counts.items %}'{{value.confirmed}}',{% endfor %}],
+            
+        },
+        {
+            label: "recovered",
+            fillColor: "green",
+            data: [{% for key,value in counts.items %}'{{value.recovered}}',{% endfor %}] ,
+            
+          },
+        {
+            label: "deceased",
+            fillColor: "black",
+            data: [{% for key,value in counts.items %}'{{value.deceased}}',{% endfor %}],
+            
+        }
+        ]
+        
+      },
+      options: {
+          scales: {
+              y: {
+                  beginAtZero: true
+              }
+          }
+      }
+  });
+  </script>
+
       
       <div class="starter-template">
 <div>              

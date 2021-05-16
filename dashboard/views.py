@@ -1,6 +1,6 @@
 #from collections import Counter
-
     
+#from django.views.generic.base import TemplateView
 from .models import CovidCases
 from django.views import View
 from django.shortcuts import render
@@ -33,6 +33,16 @@ class HomePageView(View):
             "counts":counts,          
         }
         return render(request,"core_section/home.html",context)
+
+
+
+    
+
+
+    
+
+
+
 
             
         
