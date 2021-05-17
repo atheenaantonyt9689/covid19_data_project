@@ -43,10 +43,6 @@ class ActiveCasesViews(View):
 
     def get(self,request,*args,**kwargs):
         covid=CovidCases.objects.all()
-        context={
-            'covid':covid
-
-        }
         active_dict=dict()
         for i in covid:            
             state_dict=active_dict.get(i.district)or dict(active=0)
@@ -61,6 +57,10 @@ class ActiveCasesViews(View):
 
         ordered = OrderedDict(sorted(active_dict.items(), key=lambda i: i[1]['active'], reverse=True))
         print(ordered)
+        context={
+            'ordered':ordered
+
+        }
 
 
             
