@@ -1,6 +1,6 @@
 from django.urls import path
-from .views import HomePageView
+from .views import HomePageView,ActiveCasesViews
 urlpatterns = [
 path('', HomePageView.as_view(), name='case'),
-#path('chart',ChartView.as_view(), name='chart'),
+path('top',ActiveCasesViews.as_view(), name='chart'),
 ]
