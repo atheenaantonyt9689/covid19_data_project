@@ -1,53 +1,56 @@
 {% extends 'layouts/base.html' %}
-{% block content %}  
+{% block content %}
 
 
 <div class="starter-template">
-    <div>              
-                     
-                       
-                
-             </div>  
-             <h3>TOP 10 COVID ACTIVE CASES (DISTRICS WISE )</h3>  
-             <table class="table table-bordered table-success">
-                 
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">DISTRICS</th>
-                    <th scope="col">ACTIVE</th>
-                    
-                    
-                    
-                    
-                  </tr>
-                </thead>
-                <tbody>
-                    {% for key, value in ordered.items %}
-                    
-                  <tr>
-                    <th scope="row">{{key}}</th>
-                    <td>{{value.active}}</td>
-                   
-                  </tr>
-                  
-                  
-                  {% endfor %}
-                </tbody>
-              </table>
-             
-    
-            <hr/>
-         
-            
-         
-           
-            
-    
-            
-            <!--li>{{ covid_data }}</li-->
-            
-            </div>
+    <div>
 
-                
+
+
+    </div>
+    <h3>TOP 10 COVID ACTIVE CASES (DISTRICS WISE )</h3>
+    <table class="table table-bordered table-success">
+
+        <thead class="thead-dark">
+            <tr>
+                <th scope="col">DISTRICS</th>
+                <th scope="col">ACTIVE</th>
+
+
+
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for key, value in out.items %}
+            <tr>
+                <th scope="row">{{key}}</th>
+                <td>{{value.active}}</td>
+
+            </tr>
+
+
+
+            {% endfor %}
+
+
+        </tbody>
+
+    </table>
+
+
+    <hr />
+
+
+
+
+
+
+
+
+
+</div>
+
+
 
 {% endblock%}

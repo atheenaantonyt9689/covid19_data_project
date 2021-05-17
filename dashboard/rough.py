@@ -1,19 +1,3 @@
-"""var = a = { 
-  'Black': { 'grams': 1906, 'price': 2.05},
-  'Blue': { 'grams': 9526, 'price': 22.88},
-  'Gold': { 'grams': 194, 'price': 8.24},
-  'Magenta': { 'grams': 6035, 'price': 56.69},
-  'Maroon': { 'grams': 922, 'price': 18.76},
-  'Mint green': { 'grams': 9961, 'price': 63.89},
-  'Orchid': { 'grams': 4970, 'price': 10.78},
-  'Tan': { 'grams': 6738, 'price': 50.54},
-  'Yellow': { 'grams': 6045, 'price': 54.19}
-}
-
-from collections import OrderedDict
-
-ordered = OrderedDict(sorted(a.items(), key=lambda i: i[1]['price']))
-print(ordered)"""
 
 
 
@@ -67,4 +51,19 @@ from collections import OrderedDict
 ordered = OrderedDict(sorted(active_dictionary.items(), key=lambda i: i[1]['active'], reverse=True))
 print(ordered)
 
+
+#test_dict = {'Geeks' : 1, 'For':2,  'is' : 3, 'best' : 4, 'for' : 5, 'CS' : 6}
+    
+# printing original dictionary 
+print("The original dictionary : " +  str(ordered)) 
+    
+# Initialize limit 
+N = 3
+    
+# Using items() + list slicing 
+# Get first K items in dictionary 
+out = dict(list(ordered.items())[0: N]) 
+        
+# printing result  
+print("Dictionary limited by K is : " + str(out)) 
 

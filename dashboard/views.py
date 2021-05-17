@@ -55,37 +55,15 @@ class ActiveCasesViews(View):
         
         
 
-        ordered = OrderedDict(sorted(active_dict.items(), key=lambda i: i[1]['active'], reverse=True))
-        print(ordered)
+        ordered = OrderedDict(sorted(active_dict.items(), key=lambda i: i[1]['active'], reverse=True))  
+        out = dict(list(ordered.items())[0: 10])        
+
+
         context={
-            'ordered':ordered
+            #'ordered':ordered
+            "out":out
 
-        }
-
-
-            
-
-
-            
-           
-                
-
-
-            
-
-
-            
-            #new_active_count=exsisting_active_count +int(case.active)
-            
-            #exsisting_active_count=state_dict['active']+
-            #print("exsistinggg",exsisting_active_count)
-
-
-
-
-           
-
-                
+        }           
         return render(request,"core_section/active_cases.html",context)
 
 
