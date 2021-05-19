@@ -1,9 +1,9 @@
-from django.contrib import admin
+#from django.contrib import admin
 
 # Register your models here.
 from django.contrib import admin
-from .models import CovidCases
+from .models import CovidDistrict
 #from .forms import CustomUserCreationForm,CustomUserChangeForm
 
 # Register your models here.
-admin.site.register(CovidCases)
+admin.site.register(CovidDistrict)

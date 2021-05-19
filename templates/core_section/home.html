@@ -1,102 +1,102 @@
 {% extends 'layouts/base.html' %}
-{% block content %}     
+{% block content %}
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <script>
   var ctx = document.getElementById('myChart').getContext('2d');
   var myChart = new Chart(ctx, {
-      type: 'bar',
-      data: {
-          labels: [{% for key, value in counts.items %}'{{key}}',{% endfor %}],
-          datasets: [ 
-            {
-            label: "active",
-            fillColor: "blue",
-            data: [{% for key, value in counts.items %}'{{value.active}}',{% endfor %}]
+    type: 'bar',
+    data: {
+      labels: [{% for total in state_total_data %}'{{total.state}}',{% endfor %}],
+  datasets: [
+    {
+      label: "active",
+      fillColor: "blue",
+      data: [{% for total in state_total_data %}'{{total.active__sum}}', {% endfor %}]
            
         },
-        {
-            label: "confiremd",
-            fillColor: "red",
-            data: [{% for key,value in counts.items %}'{{value.confirmed}}',{% endfor %}],
+  {
+    label: "confiremd",
+      fillColor: "red",
+        data: [{% for total in state_total_data %} '{{total.confirmed__sum}}', {% endfor %}],
             
         },
-        {
-            label: "recovered",
-            fillColor: "green",
-            data: [{% for key,value in counts.items %}'{{value.recovered}}',{% endfor %}] ,
+  {
+    label: "recovered",
+      fillColor: "green",
+        data: [{% for total in state_total_data %} '{{total.recovered__sum}}', {% endfor %}] ,
             
           },
-        {
-            label: "deceased",
-            fillColor: "black",
-            data: [{% for key,value in counts.items %}'{{value.deceased}}',{% endfor %}],
+  {
+    label: "deceased",
+      fillColor: "black",
+        data: [{% for total in state_total_data %} '{{total.deceased__sum}}', {% endfor %}] ,
             
+      
         }
         ]
         
       },
-      options: {
-          scales: {
-              y: {
-                  beginAtZero: true
-              }
-          }
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
       }
+    }
+  }
   });
-  </script>
+</script>
 
-      
-      <div class="starter-template">
-<div>              
-                 
-                   
-            
-         </div>  
-         <h3> COVID DATA</h3>  
-         <table class="table table-bordered table-success">
-             
-            <thead class="thead-dark">
-              <tr>
-                <th scope="col">STATE</th>
-                <th scope="col">ACTIVE</th>
-                <th scope="col">CONFIRMED</th>
-                <th scope="col">DECEASED</th>
-                
-                <th scope="col">RECOVERD</th>
-                
-                
-                
-                
-              </tr>
-            </thead>
-            <tbody>
-                {% for key, value in counts.items %}
-              <tr>
-                <th scope="row">{{key}}</th>
-                <td>{{value.active}}</td>
-                <td>{{value.confirmed}}</td>
-                <td>{{value.deceased}}</td>
-                <td>{{value.recovered}}</td>
-                
-              </tr>
-              
-              
-              {% endfor %}
-            </tbody>
-          </table>
-         
 
-        <hr/>
-     
-        
-     
-       
-        
+<div class="starter-template">
+  <div>
 
-        
-        <!--li>{{ covid_data }}</li-->
-        
-        </div>
+
+
+  </div>
+  <h3> COVID DATA</h3>
+  <table class="table table-bordered table-success">
+
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">STATE</th>
+        <th scope="col">ACTIVE</th>
+        <th scope="col">CONFIRMED</th>
+        <th scope="col">DECEASED</th>
+
+        <th scope="col">RECOVERD</th>
+
+
+
+
+      </tr>
+    </thead>
+    <tbody>
+      {% for total in state_total_data %}
+      <tr>
+        <th scope="row">{{total.state}}</th>
+        <td>{{total.active__sum}}</td>
+        <td>{{total.confirmed__sum}}</td>
+        <td>{{total.recovered__sum}}</td>
+        <td>{{total.deceased__sum}}</td-->
+
+      </tr>
+
+
+      {% endfor %}
+    </tbody>
+  </table>
+
+
+  <hr />
+
+
+
+
+
+
+
+  <!--li>{{ covid_data }}</li-->
+
+</div>
 {% endblock content %}
-

@@ -1,6 +1,7 @@
 
 from django.core.management.base import BaseCommand
-from dashboard.models import CovidCases
+from django.db.models.fields import DateField
+from dashboard.models import CovidDistrict
 import requests
 import json
 
@@ -18,14 +19,12 @@ class Command(BaseCommand):
             district_info =state_data['districtData']
             ditricts=district_info.keys()
             length=len(ditricts)
-            #for i in district_info.values():
-            # # for Key,ele in i.items():            
-            #       res[Key]=ele+res.get(Key,0)
-            #print(res)
-    
+            
             for district_name,district_values in district_info.items(): 
+                #print(district_name)
 
-                obj1=CovidCases.objects.create(state=state,district=district_name,active=district_values['active'],confirmed=district_values['confirmed'],deceased=district_values['deceased'],recovered=district_values['recovered'])
+
+                obj1=CovidDistrict.objects.create(state=state,district=district_name,active=district_values['active'],confirmed=district_values['confirmed'],deceased=district_values['deceased'],recovered=district_values['recovered'])
                 obj1.save()
 
 
