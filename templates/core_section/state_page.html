@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+
+
+<canvas id="stateChart" width="400" height="400"></canvas>
+
+
+<script>
+  var ctx = document.getElementById('stateChart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [{% for total in state_covid_data %}'{{total.district}}',{% endfor %}],
+  datasets: [
+    {
+      label: "active",
+      fillColor: "blue",
+      data: [{% for total in state_covid_data %}'{{total.active}}', {% endfor %}]
+           
+        }
+ 
+        ]
+        
+      },
+  options: {
+    scales: {
+      y: {
+        beginAtZero: true
+      }
+    }
+  }
+  });
+</script>
+
+
+
+{% endblock %}

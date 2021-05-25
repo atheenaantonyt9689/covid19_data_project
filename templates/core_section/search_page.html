@@ -1,0 +1,32 @@
+{% extends 'layouts/base.html' %}
+{% block content %}
+<div>
+  <center>
+
+    <div class="card" style="width:40%;height: 80%;margin-top: 4px;color: rgb(212, 106, 106);">
+      {% if val %}
+        {% for i in queryset %}
+          <h3>{{i.state}}&nbsp;&nbsp;&nbsp;{{ i.district}}</h3>
+          <ul class="list-group list-group-flush">        
+              
+          <li class="list-group-item"><b>ACTIVE CASES :{{i.active}}</b></li>
+          <li class="list-group-item"><b>RECOVRED CASES :{{i.recovered}}</b></li>
+          <li class="list-group-item"><b>CONFIRMED CASES :{{i.deceased}}</b></li>
+          <li class="list-group-item"><b>DECEASED CASES :{{i.confiremed}}</b></li>
+          </ul>
+        
+        {% endfor %}
+      {% else %}
+      <p>District not found...<p>
+     
+      {% endif %}
+      
+      
+     
+    </div>
+
+  </center>
+
+</div>
+
+{% endblock %}

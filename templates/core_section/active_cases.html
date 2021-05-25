@@ -2,7 +2,7 @@
 {% block content %}
 
 
-<div class="starter-template">
+<div class="starter-template">    
 
     <h3> TOP 10 COVID ACTIVE CASES (DISTRICT WISE)</h3>
     <table class="table table-bordered table-success">
@@ -15,13 +15,21 @@
 
 
             </tr>
-        </thead>
+        </thead>       
+        
+            
         <tbody>
+
+           
             {% for i in ordered_districts %}
-            <tr>
-                <th scope="row">{{i.state}}</th>
+            <tr>               
+               <!--td><a href={% url 'state_district'  %}>{{i.state}}</a></td-->
+               
+                <td>{{i.state}}</td>  
+
                 <td>{{i.district}}</td>
-                <td>{{i.active}}</td>
+                <td>{{i.active}}</td-->
+                
 
             </tr>
 
