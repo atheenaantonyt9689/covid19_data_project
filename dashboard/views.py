@@ -45,7 +45,7 @@ class DistrictViews(View):
     def get(self,request,*args,**kwargs):
 
         state_covid=request.GET.get("state")
-        state_covid_data=CovidDistrict.objects.filter(state="state_covid").order_by('-active').values('state','district','active')[:5]
+        state_covid_data=CovidDistrict.objects.filter(state=state_covid).order_by('-active').values('state','district','active')[:5]
             
         
         #print(state_covid_data)
