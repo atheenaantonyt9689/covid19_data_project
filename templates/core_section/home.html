@@ -16,7 +16,7 @@
            
         },
   {
-    label: "confiremd",
+    label: "confirmed",
       fillColor: "red",
         data: [{% for total in state_total_data %} '{{total.confirmed__sum}}', {% endfor %}],
             
@@ -65,32 +65,23 @@
         <th scope="col">DECEASED</th>
 
         <th scope="col">RECOVERD</th>
-
-
-
-
       </tr>
     </thead>
     <tbody>
       {% for total in state_total_data %}
       <tr>
         
-        <th scope="row"><a href="{% url state %}?state={{total.state}}">{{total.state}}</a></th>
-        <th scope="row">{{total.state}}</th>
-        
+        <th scope="row"><a href="{% url 'state' %}?state={{total.state}}">{{total.state}}</a></th>
+                
         <td>{{total.active__sum}}</td>
         <td>{{total.confirmed__sum}}</td>
         <td>{{total.recovered__sum}}</td>
         <td>{{total.deceased__sum}}</td-->
 
       </tr>
-
-
       {% endfor %}
     </tbody>
   </table>
-
-
   <hr />
 
 

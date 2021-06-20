@@ -7,7 +7,7 @@ import json
 
 
 class Command(BaseCommand):
-    help = 'display_covid_details'
+    help = 'fetch_covid_data'
 
     def handle(self, *args, **kwargs):
         

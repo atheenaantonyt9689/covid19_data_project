@@ -1,0 +1,35 @@
+{% extends 'layouts/base.html' %}
+{% block content %}   
+
+    <div class='bg-light border p-3 rounded'>
+      <h4>covid data</h4>
+      <p class="col-md-8">Filter by Date</p>
+    
+      
+        <div class="mt-4 mb-2">
+          <form action='' method='POST'>
+            {% csrf_token %}
+            <select id="published_date" name="published_date">
+              {% for i in all_data %}
+              <option value="{{i.published_date}}">{{i.published_date}}</option>
+               {% endfor %}
+      
+            </select>
+            
+            <div class='col-md-12'>
+              <div class='py-2'>
+                <input type='submit' class='btn btn-sm btn-primary' value='Submit' />
+              </div>
+            </div>
+        </div>
+        </form>
+        <div>
+     
+        </div>
+    
+    {% endblock content %}
+    
+
+    
+
+

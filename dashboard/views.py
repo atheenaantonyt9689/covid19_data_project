@@ -1,5 +1,7 @@
 #from django.views.generic.base import TemplateView
 #from collections import OrderedDict
+#from dateutil import parser
+from datetime import datetime
 from django import views
 from django.db.models import Sum
 from django.db import models
@@ -9,7 +11,44 @@ from django.db.models.sql.query import RawQuery
 from .models import CovidDistrict
 from django.views import View
 from django.shortcuts import render
-class HomePageView(View):
+
+
+
+class DateFilterView(View):
+    model=CovidDistrict
+    template_name='core_section/home.html'
+    def get(self,request,*args,**kwargs):        
+      
+        all_date=CovidDistrict.objects.values('published_date').distinct()       
+           
+        context={ 
+            "all_data":all_date
+               
+        }           
+        return render(request,"core_section/date_filter.html",context)
+
+    def post(self,request,*args,**kwargs):         
+        published_date=request.POST.get('published_date')
+        #print(published_date)
+        
+        date_time_obj = datetime.strptime(published_date, '%B %d, %Y')
+        
+        #queryset =CovidDistrict.objects.all().filter(published_date=date_time_obj)    
+        state_total_data=CovidDistrict.objects.filter(published_date=date_time_obj).values('state').annotate(Sum('active'),Sum('confirmed'),Sum('recovered'),Sum('deceased'))
+        print(state_total_data)
+        
+          
+        context={ 
+            #"queryset":queryset
+            "state_total_data":state_total_data
+               
+        }           
+        return render(request,"core_section/home.html",context)
+
+
+
+
+"""class HomePageView(View):
     model=CovidDistrict
     template_name='core_section/home.html'
     def get(self,request,*args,**kwargs):         
@@ -21,7 +60,7 @@ class HomePageView(View):
                 "state_total_data":state_total_data
 
         }           
-        return render(request,"core_section/home.html",context)
+        return render(request,"core_section/home.html",context)"""
 
 
 class ActiveCasesViews(View):
@@ -61,27 +100,26 @@ class DistrictViews(View):
 
 class SearchView(View):
     model=CovidDistrict
-    template_name='core_section/search_page.html'
+    template_name='core_section/search.html'
     def get(self,request,*args,**kwargs): 
-
+        
         val = self.request.GET.get("district") 
        
         if val:
             queryset = CovidDistrict.objects.filter(district__iexact=val).values('state','district','active','confirmed','recovered','deceased')
             print("query set:",queryset)
         else:
-            queryset = CovidDistrict.objects.none()
-            #print("District not found")
-        
+            queryset=None
+            
 
 
         
         context={ 
-
-                "queryset":queryset
+                #"queryset":queryset,
+               # "val":val
 
         }           
-        return render(request,"core_section/search_page.html",context)
+        return render(request,"core_section/search.html",context)
 
 
 
