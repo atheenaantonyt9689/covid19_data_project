@@ -19,7 +19,7 @@ class DateFilterView(View):
     template_name='core_section/home.html'
     def get(self,request,*args,**kwargs):        
       
-        all_date=CovidDistrict.objects.values('published_date').distinct()       
+        all_date=CovidDistrict.objects.values('published_date').order_by('-published_date')[:1]     
            
         context={ 
             "all_data":all_date
@@ -106,7 +106,7 @@ class SearchView(View):
         val = self.request.GET.get("district") 
        
         if val:
-            queryset = CovidDistrict.objects.filter(district__iexact=val).values('state','district','active','confirmed','recovered','deceased')
+            queryset = CovidDistrict.objects.filter(district__iexact=val).values('state','district','active','confirmed','recovered','deceased','published_date').order_by('-published_date')[:1]  
             print("query set:",queryset)
         else:
             queryset=None
@@ -115,8 +115,8 @@ class SearchView(View):
 
         
         context={ 
-                #"queryset":queryset,
-               # "val":val
+                "queryset":queryset,
+               "val":val
 
         }           
         return render(request,"core_section/search.html",context)

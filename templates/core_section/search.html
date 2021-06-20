@@ -60,7 +60,7 @@
         </ul>
         <form class="form-inline my-2 my-lg-0" action="{% url 'search' %}" method="GET">
           <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" name="district">
-          <input type="hidden" id="published_date" name="published_date" value="published_date">
+          
           <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form-->
       </div>
@@ -73,7 +73,8 @@
               <div class="card" style="width:40%;height: 80%;margin-top: 4px;color: rgb(212, 106, 106);">
                 {% if val %}
                   {% for i in queryset%}
-                  
+                  <h2>{{i.published_date}}</h2>
+                   <hr>                  
                       <h3>&nbsp;&nbsp;&nbsp;{{i.district}}</h3>
                       <ul class="list-group list-group-flush">               
                       <li class="list-group-item"><b>ACTIVE CASES :{{i.active}}</b></li>
