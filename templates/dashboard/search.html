@@ -71,7 +71,7 @@
         <div>
             <center>                
               <div class="card" style="width:40%;height: 80%;margin-top: 4px;color: rgb(212, 106, 106);">
-                {% if val %}
+                {% if val and queryset %}
                   {% for i in queryset%}
                   <h2>{{i.published_date}}</h2>
                    <hr>                  

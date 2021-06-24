@@ -14,7 +14,8 @@
   datasets: [
     {
       label: "active",
-      fillColor: "blue",
+      backgroundColor: "blue",
+
       data: [{% for total in state_covid_data %}'{{total.active}}', {% endfor %}]
            
         }

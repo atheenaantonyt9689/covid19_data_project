@@ -1,6 +1,33 @@
 {% extends 'layouts/base.html' %}
 {% block content %}
 <div>
+  <div class='bg-light border p-3 rounded'>
+    <h4>covid data</h4>
+    <p class="col-md-8">Filter by Date</p>
+  
+    
+      <div class="mt-4 mb-2">
+        <form action='' method='POST'>
+          {% csrf_token %}
+          <select id="published_date" name="published_date">
+            {% for i in all_dates %}
+            <option value="{{i.published_date}}">{{i.published_date}}</option>
+             {% endfor %}
+    
+          </select>
+          
+          <div class='col-md-12'>
+            <div class='py-2'>
+              <input type='submit' class='btn btn-sm btn-primary' value='Submit' />
+            </div>
+          </div>
+      </div>
+      </form>
+      <div>
+   
+      </div>
+  
+  
 <canvas id="myChart" width="400" height="400"></canvas>
 
 <script>
@@ -12,25 +39,29 @@
   datasets: [
     {
       label: "active",
-      fillColor: "blue",
+      
+      backgroundColor: "green",
       data: [{% for total in state_total_data %}'{{total.active__sum}}', {% endfor %}]
            
         },
   {
     label: "confirmed",
-      fillColor: "red",
+      
+      backgroundColor: "red",
         data: [{% for total in state_total_data %} '{{total.confirmed__sum}}', {% endfor %}],
             
         },
   {
     label: "recovered",
-      fillColor: "green",
+      
+      backgroundColor: "blue",
         data: [{% for total in state_total_data %} '{{total.recovered__sum}}', {% endfor %}] ,
             
           },
   {
     label: "deceased",
-      fillColor: "black",
+      
+      backgroundColor: "black",
         data: [{% for total in state_total_data %} '{{total.deceased__sum}}', {% endfor %}] ,
             
       
